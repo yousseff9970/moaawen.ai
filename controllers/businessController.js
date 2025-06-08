@@ -2,7 +2,7 @@ const Business = require('../models/Business');
 
 exports.createBusiness = async (req, res) => {
   try {
-    const { name, whatsappNumber, instagramPageId, aiTone, language } = req.body;
+    const { name, whatsappNumber, instagramPageId,ownerEmail, aiTone, language } = req.body;
     const owner = req.user.userId;
 
     const exists = await Business.findOne({ $or: [{ whatsappNumber }, { instagramPageId }] });
@@ -12,6 +12,7 @@ exports.createBusiness = async (req, res) => {
       name,
       whatsappNumber,
       instagramPageId,
+      ownerEmail,
       aiTone,
       language,
       owner
